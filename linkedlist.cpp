@@ -170,23 +170,30 @@ public:
         }
     }
 
-    void selection_sort(){
-        Node* ptr1=this->head;
-        Node *ptr2;
-        while(ptr1 ->next != NULL){
-            ptr2=ptr1->next;
-            while(ptr2 != NULL){
-                if(ptr1->data > ptr2->data){
-                    int temp=ptr1->data;
-                    ptr1->data=ptr2->data;
-                    ptr2->data=temp;
+    void selection_sort_bydata(){
+        for(Node* p=head;p->next != NULL;p=p->next){
+            for(Node* q=p->next;q != NULL;q=q->next){
+                if(p->data > q->data){
+                    int temp=p->data;
+                    p->data=q->data;
+                    q->data=temp;
                 }
-                ptr2=ptr2->next;
             }
-            ptr1=ptr1->next;
         }
     }
-    
+    void bubble_sort_bydata(){
+        Node *q, *p;
+        for(Node* end=NULL; end !=head->next;end=q){
+            for(p=head;p->next != end;p=p->next){
+                q=p->next;
+                if(p->data > q->data){
+                    int temp=p->data;
+                    p->data=q->data;
+                    q->data=temp;
+                } 
+            }
+        }
+    }
 };
 
 int main()
@@ -199,21 +206,22 @@ int main()
     Node *p = &pun;
     SinglyLinkedList l2(p);
     l2.append(5);
+    l2.append(98);
+    l2.append(6);
+    l2.append(6);
+    l2.append(98);
+    l2.append(6);
+    l2.append(98);
+    l2.append(98);
+    l2.append(6);
     l2.append(5);
-    l2.append(6);
-    l2.append(6);
-    l2.append(6);
-    l2.append(6);
-    l2.append(98);
-    l2.append(98);
-    l2.append(98);
-    l2.append(98);
     l2.printlist();
     // l2.reverselist();
     // l2.printlist();
     // l2.insert(55,2);
     // l2.delet(0);
-    l2.selection_sort();
+    // l2.selection_sort_bydata();
+    l2.bubble_sort_bydata();
     l2.printlist();
 
 
