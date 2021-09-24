@@ -65,19 +65,21 @@ public:
         }
     }
     void insert(string key,T value){
-        int bi=hashfunction(key);
-        Node<T>* ptr=this->arr[bi];
-        Node<T>* toAdd=new Node<T>(key,value);
-        if(arr[bi] == NULL){
-            arr[bi]=toAdd;
-        }
-        else{
-            toAdd->next=arr[bi];
-            arr[bi]=toAdd;
-        }
-        size++;
-        if(float(this->size)/(this->maxsize) >= 0.8 ){
-            rehashing();
+        if(search(key) == -1){
+            int bi=hashfunction(key);
+            Node<T>* ptr=this->arr[bi];
+            Node<T>* toAdd=new Node<T>(key,value);
+            if(arr[bi] == NULL){
+                arr[bi]=toAdd;
+            }
+            else{
+                toAdd->next=arr[bi];
+                arr[bi]=toAdd;
+            }
+            size++;
+            if(float(this->size)/(this->maxsize) >= 0.8 ){
+                rehashing();
+            }
         }
     }
     T search(string key){
@@ -125,6 +127,8 @@ public:
 };
 
 int main(){
+
+    
     HashTable<int> ht;
     ht.insert("apple",50);
     ht.insert("puneet",49);
@@ -143,3 +147,8 @@ int main(){
     ht.display();
     return 0;
 }
+
+/*
+Collison is handeled by seperate chaining that is open hashing
+
+*/
