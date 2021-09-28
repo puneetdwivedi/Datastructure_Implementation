@@ -198,6 +198,7 @@ public:
 
 int main()
 {
+
     Node puneet;
     // cout<<puneet.data<<endl;
     Node pun(25);
